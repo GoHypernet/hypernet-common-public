@@ -1,0 +1,54 @@
+{
+  "name": "@hypernetlabs/common-redis-provider",
+  "version": "0.0.14",
+  "description": "Redis provider, ready for injection, using Neverthrow",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GoHypernet/hypernet-common-public.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GoHypernet/hypernet-common-public/issues"
+  },
+  "homepage": "https://github.com/GoHypernet/chypernet-common-public/tree/main/packages/core#readme",
+  "author": "Hypernet Labs <success@hypernetlabs.io>",
+  "keywords": [
+    "Hypernet Labs",
+    "Redis",
+    "Neverthrow"
+  ],
+  "main": "lib/index.js",
+  "files": [
+    "lib",
+    "!lib/test",
+    "!lib/tsconfig.tsbuildinfo",
+    "!test",
+    "!src",
+    "!tsconfig.json"
+  ],
+  "scripts": {
+    "alias": "tsc-alias",
+    "build": "yarn clean && yarn compile",
+    "clean": "rimraf dist tsconfig.tsbuildinfo",
+    "compile": "tsc --build && cd ../.. && yarn alias",
+    "format": "eslint --fix 'src/**/*.ts' && yarn format:pkg",
+    "format:pkg": "format-package -w",
+    "prepare": "yarn build",
+    "prepublishOnly": "yarn test && yarn format",
+    "test": "yarn test:ci",
+    "test:ci": "jest --runInBand --coverage --passWithNoTests",
+    "test:watch": "jest --watch --color --detectOpenHandles",
+    "preversion": "yarn format",
+    "version": "yarn format && git add -A src",
+    "postversion": "git push && git push --tags"
+  },
+  "types": "lib/index.d.ts",
+  "dependencies": {
+    "@hypernetlabs/objects": "^0.3.20",
+    "@hypernetlabs/utils": "^0.5.4",
+    "inversify": "^5.1.1",
+    "neverthrow": "^4.2.2",
+    "redis": "^3.1.2",
+    "redlock": "^4.2.0"
+  }
+}

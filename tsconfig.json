@@ -1,0 +1,21 @@
+{
+	"extends": "./tsconfig.build.json",
+	"files": [],
+	"references": [
+		{
+			"path": "packages/crypto-utils"
+		},
+		{
+			"path": "packages/csv-utils"
+		},
+		{
+			"path": "packages/objects"
+		},
+		{
+			"path": "packages/redis-provider"
+		},
+		{
+			"path": "packages/repositories"
+		}
+	]
+}

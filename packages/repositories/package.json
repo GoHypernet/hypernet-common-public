@@ -1,0 +1,53 @@
+{
+  "name": "@hypernetlabs/common-repositories",
+  "version": "0.0.8",
+  "description": "Mostly contract repositories utils, ready for injection, using Neverthrow",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GoHypernet/hypernet-common-public.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GoHypernet/hypernet-common-public/issues"
+  },
+  "homepage": "https://github.com/GoHypernet/hypernet-common-public/tree/main/packages/core#readme",
+  "author": "Hypernet Labs <success@hypernetlabs.io>",
+  "keywords": [
+    "Hypernet Labs",
+    "Crypto",
+    "Neverthrow"
+  ],
+  "main": "lib/index.js",
+  "files": [
+    "lib",
+    "!lib/test",
+    "!lib/tsconfig.tsbuildinfo",
+    "!test",
+    "!src",
+    "!tsconfig.json"
+  ],
+  "scripts": {
+    "alias": "tsc-alias",
+    "build": "yarn clean && yarn compile",
+    "clean": "rimraf dist tsconfig.tsbuildinfo",
+    "compile": "tsc --build && cd ../.. && yarn alias",
+    "format": "eslint --fix 'src/**/*.ts' && yarn format:pkg",
+    "format:pkg": "format-package -w",
+    "prepare": "yarn build",
+    "prepublishOnly": "yarn test && yarn format",
+    "test": "yarn build && yarn test:ci",
+    "test:ci": "jest --runInBand --coverage --passWithNoTests",
+    "test:watch": "jest --watch --color --detectOpenHandles",
+    "preversion": "yarn format",
+    "version": "yarn format && git add -A src",
+    "postversion": "git push && git push --tags"
+  },
+  "types": "lib/index.d.ts",
+  "dependencies": {
+    "@hypernetlabs/governance-sdk": "^0.0.26",
+    "@hypernetlabs/objects": "^0.3.20",
+    "ethers": "^5.4.7",
+    "inversify": "^5.1.1",
+    "neverthrow": "^4.2.2"
+  }
+}
